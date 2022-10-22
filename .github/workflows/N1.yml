@@ -6,7 +6,7 @@
     PACKAGE_SOC: s905d
     KERNEL_VERSION_NAME: 5.15.74
     
-    - name: Upload OpenWrt Firmware to Release
+- name: Upload OpenWrt Firmware to Release
   uses: ncipollo/release-action@main
   with:
     tag: openwrt_armvirt_v8_${{ env.PACKAGED_OUTPUTDATE }}
