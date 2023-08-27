@@ -52,8 +52,8 @@ jobs:
     haskell: true
     large-packages: true
     swap-storage: true
-    - name: Checkout
-      uses: actions/checkout@main
+  - name: Checkout
+    uses: actions/checkout@main
 
     - name: Initialization environment
       env:
