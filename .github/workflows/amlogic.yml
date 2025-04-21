@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build N1docker OpenWrt
+name: Build ZX OpenWrt
 
 on:
   repository_dispatch:
@@ -35,7 +35,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Free Disk Space (Ubuntu)
@@ -194,11 +194,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package Armvirt as OpenWrt
-      uses: unifreq/openwrt_packit@master
-      env:
-       OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*rootfs.tar.gz
-       PACKAGE_SOC: s905d
-       KERNEL_VERSION_NAME: 5.4.272_5.10.213_5.15.152_6.1.82_6.6.22
+      uses: ophub/amlogic-s9xxx-openwrt@main
+      with:
+        openwrt_path: openwrt/bin/targets/*/*/*rootfs.tar.gz
+        openwrt_board: s905d_s905l-b860av21u_s905l3b-ip103h_s905l3-cm211
+        openwrt_kernel: 6.1.121
     - name: Upload OpenWrt Firmware to Release
       uses: ncipollo/release-action@main
       with:
@@ -207,7 +207,7 @@ jobs:
         allowUpdates: true
         token: ${{ secrets.GH_TOKEN }}
         body: |
-          This is LEAN-DOCKER OpenWrt firmware for Armvirt 64
+          This is AMLOGIC OpenWrt firmware for Armvirt 64
           * Firmware information
           Default IP: 192.168.2.2
           Default username: root

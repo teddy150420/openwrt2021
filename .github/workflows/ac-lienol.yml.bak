@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build N1docker OpenWrt
+name: Build  ac-lienol
 
 on:
   repository_dispatch:
@@ -20,17 +20,17 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: leandocker.config
+  REPO_URL:  https://github.com/Lienol/openwrt
+  REPO_BRANCH: 22.03
+  FEEDS_CONF: feeds.conf.default2
+  CONFIG_FILE: ac-lienol.config
   DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
+  DIY_P2_SH: diy-part3.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: false
+  UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -38,21 +38,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Free Disk Space (Ubuntu)
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: true
-        
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        swap-storage: true
-        
     - name: Checkout
       uses: actions/checkout@main
 
@@ -178,6 +163,12 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+        body: |
+          This is LIENOL OpenWrt firmware for AC2100
+          * Firmware information
+          Default IP: 192.168.2.1
+          Default username: root
+          Default password: password
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
@@ -189,26 +180,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 4
+        keep_latest: 30
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Package Armvirt as OpenWrt
-      uses: unifreq/openwrt_packit@master
-      env:
-       OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*rootfs.tar.gz
-       PACKAGE_SOC: s905d
-       KERNEL_VERSION_NAME: 5.4.272_5.10.213_5.15.152_6.1.82_6.6.22
-    - name: Upload OpenWrt Firmware to Release
-      uses: ncipollo/release-action@main
-      with:
-        tag: lean_armvirt_v8_${{ env.PACKAGED_OUTPUTDATE }}
-        artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
-        allowUpdates: true
-        token: ${{ secrets.GH_TOKEN }}
-        body: |
-          This is LEAN-DOCKER OpenWrt firmware for Armvirt 64
-          * Firmware information
-          Default IP: 192.168.2.2
-          Default username: root
-          Default password: password
