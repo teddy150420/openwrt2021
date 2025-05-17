@@ -198,7 +198,7 @@ jobs:
       env:
        OPENWRT_ARMSR: openwrt/bin/targets/*/*/*rootfs.tar.gz
        PACKAGE_SOC: s905d
-       KERNEL_VERSION_NAME: 5.4.291_5.10.235_5.15.182_6.1.138_6.6.90_6.12.28
+       KERNEL_VERSION_NAME: 6.1.138_6.6.90_6.12.28
     - name: Upload OpenWrt Firmware to Release
       uses: ncipollo/release-action@main
       with:
