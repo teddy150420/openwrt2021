@@ -52,7 +52,21 @@ jobs:
         haskell: true
         large-packages: true
         swap-storage: true
-        
+    - name: 清理系统空间
+      run: |
+        sudo apt-get clean
+        sudo apt-get autoremove -y
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo rm -rf /opt/microsoft
+        sudo rm -rf /opt/pipx
+        sudo rm -rf /usr/share/swift
+        echo "======================="
+        echo "清理后空间使用情况："
+        echo "======================="
+        df -h   
     - name: Checkout
       uses: actions/checkout@main
 
