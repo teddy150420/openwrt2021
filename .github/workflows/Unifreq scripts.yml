@@ -169,7 +169,7 @@ jobs:
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         run: |
           armsr_tarfile_repo="teddy780102/openwrt2021"
-          releases_tag_keywords="OpenWrt_lede_save_"
+          releases_tag_keywords="OpenWrt_lede_master_save_"
 
           armsr_tarfile_path="openwrt/output"
           [[ -d "${armsr_tarfile_path}" ]] || mkdir -p ${armsr_tarfile_path}
