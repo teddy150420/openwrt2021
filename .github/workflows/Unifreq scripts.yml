@@ -221,6 +221,7 @@ jobs:
           KERNEL_VERSION_NAME: ${{ inputs.openwrt_kernel }}
           KERNEL_AUTO_LATEST: ${{ inputs.auto_kernel }}
           WHOAMI: ${{ inputs.builder_name }}
+          openwrt_ip : 192.168.2.2
 
       - name: Upload the packaged OpenWrt
         uses: ncipollo/release-action@main

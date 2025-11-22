@@ -411,6 +411,7 @@ jobs:
           kernel_repo: ${{ inputs.kernel_repo }}
           kernel_usage: ${{ inputs.kernel_usage }}
           builder_name: ${{ inputs.builder_name }}
+          openwrt_ip : 192.168.2.2
 
       - name: Upload the packaged OpenWrt
         uses: ncipollo/release-action@main
