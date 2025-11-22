@@ -23,7 +23,7 @@ on:
       docker_img:
         description: "Set the docker image"
         required: false
-        default: "teddy150420/openwrt-armv8:latest"
+        default: "teddy150420/openwrt-aarch64:latest"
         type: choice
         options:
           - teddy150420/openwrt-armv8:latest
