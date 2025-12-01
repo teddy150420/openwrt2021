@@ -14,12 +14,12 @@ on:
       source_branch:
         description: "Select the source branch"
         required: false
-        default: "lede"
+        default: "lede_master"
         type: choice
         options:
           - openwrt_main
           - immortalwrt_master
-          - lede
+          - lede_master
       docker_img:
         description: "Set the docker image"
         required: false
