@@ -1,4 +1,4 @@
-src-git packages https://github.com/Lienol/openwrt-packages.git;22.03
+src-git packages https://github.com/teddy780102/openwrt-packages;22.03
 src-git luci https://github.com/Lienol/openwrt-luci.git;17.01
 src-git routing https://git.openwrt.org/feed/routing.git;openwrt-22.03
 src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-22.03
