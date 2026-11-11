@@ -12,6 +12,7 @@
 
 # Modify default IP
 sed -i 's/192.168.6.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 rm -rf  feeds/packages/net/lucky
 rm -rf  feeds/luci/applications/luci-app-openclash
 #rm -rf  feeds/small8/luci-app-lucky
